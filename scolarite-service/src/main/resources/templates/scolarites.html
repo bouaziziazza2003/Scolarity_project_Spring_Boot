@@ -191,6 +191,7 @@
                         <th>Nom</th>
                         <th>Prénom</th>
                         <th>Niveau</th>
+                        <th>Adresse</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -203,6 +204,7 @@
                             <span class="niveau-tag" th:classappend="'niveau-' + ${#strings.toLowerCase(s.niveau)}"
                                   th:text="${s.niveau}"></span>
                         </td>
+                        <td th:text="${s.addresse}"></td>
                         <td><a class="btn" th:href="@{'/web/scolarites/' + ${s.id}}">Modifier</a></td>
                     </tr>
                 </tbody>

@@ -197,6 +197,10 @@
                     <input type="text" id="prenom" name="prenom" th:value="${scolarite.prenom}" required>
                 </div>
                 <div class="field">
+                    <label>Adresse</label>
+                    <div class="value" th:text="${scolarite.addresse}"></div>
+                </div>
+                <div class="field">
                     <label for="niveau">Niveau</label>
                     <select id="niveau" name="niveau">
                         <option value="L3" th:selected="${scolarite.niveau == 'L3'}">L3</option>
