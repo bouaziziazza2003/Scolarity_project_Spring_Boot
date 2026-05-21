@@ -1,0 +1,33 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: r1
+          uri: http://localhost:8081/
+          predicates:
+            - Path=/scolarites/**
+
+        - id: r2
+          uri: http://localhost:8082/
+          predicates:
+            - Path=/produits/**
+
+        - id: r3
+          uri: http://localhost:8083/
+          predicates:
+            - Path=/factures/**
+
+        - id: r4
+          uri: http://localhost:8084/
+          predicates:
+            - Path=/etudiants/**
+
+        - id: r5
+          uri: http://localhost:8085/
+          predicates:
+            - Path=/enseignants/**
+
+        - id: r6
+          uri: http://localhost:8086/
+          predicates:
+            - Path=/stages/**

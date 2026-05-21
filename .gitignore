@@ -1,0 +1,15 @@
+target/
+bin/
+*.class
+.classpath
+.project
+.factorypath
+.settings/
+.metadata/
+*.iml
+.idea/
+*.log
+*.swp
+*.swo
+.DS_Store
+Thumbs.db

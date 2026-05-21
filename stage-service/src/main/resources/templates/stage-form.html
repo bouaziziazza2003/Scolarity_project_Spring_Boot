@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Stages — Modifier</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background: #f0f2f5;
+            color: #1e293b;
+            min-height: 100vh;
+        }
+        .topbar {
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+            padding: 16px 0;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+        }
+        .topbar-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 36px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .topbar-logo {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-weight: 700;
+            font-size: 14px;
+        }
+        .topbar-title {
+            color: #fff;
+            font-size: 16px;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+        }
+        .topbar-badge {
+            margin-left: auto;
+            background: rgba(255,255,255,0.1);
+            color: #c7d2fe;
+            font-size: 12px;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+        .page {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 32px 24px;
+        }
+        .header-card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 28px 32px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+            margin-bottom: 24px;
+            border-left: 4px solid #6366f1;
+        }
+        .header-card h1 {
+            font-size: 20px;
+            font-weight: 700;
+            color: #0f172a;
+        }
+        .header-card .subtitle {
+            color: #64748b;
+            font-size: 14px;
+            margin-top: 4px;
+        }
+        .form-card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 28px 32px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+        }
+        .field {
+            margin-bottom: 22px;
+        }
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: #334155;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+        }
+        .value {
+            padding: 10px 14px;
+            color: #475569;
+            font-size: 14px;
+            background: #f8fafc;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+        }
+        input[type=text], select {
+            width: 100%;
+            padding: 11px 14px;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 14px;
+            font-family: 'Inter', system-ui, sans-serif;
+            background: #fff;
+            transition: all 0.15s;
+            outline: none;
+            box-sizing: border-box;
+            color: #1e293b;
+        }
+        input[type=text]:focus, select:focus {
+            border-color: #6366f1;
+            box-shadow: 0 0 0 3px rgba(99,102,241,0.1);
+        }
+        select {
+            cursor: pointer;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            appearance: none;
+        }
+        .btn-row {
+            display: flex;
+            gap: 12px;
+            margin-top: 28px;
+        }
+        .btn {
+            flex: 1;
+            padding: 11px 20px;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            font-family: 'Inter', system-ui, sans-serif;
+            transition: all 0.2s;
+            box-shadow: 0 2px 6px rgba(99,102,241,0.25);
+        }
+        .btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(99,102,241,0.35);
+        }
+        .btn-cancel {
+            flex: 1;
+            padding: 11px 20px;
+            background: #fff;
+            color: #475569;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            font-family: 'Inter', system-ui, sans-serif;
+            text-align: center;
+            transition: all 0.15s;
+            border: 1.5px solid #e2e8f0;
+            display: inline-block;
+        }
+        .btn-cancel:hover {
+            background: #f8fafc;
+            border-color: #cbd5e1;
+        }
+    </style>
+</head>
+<body>
+    <div class="topbar">
+        <div class="topbar-inner">
+            <div class="topbar-logo">S</div>
+            <span class="topbar-title">StageService</span>
+            <span class="topbar-badge">Modification</span>
+        </div>
+    </div>
+    <div class="page">
+        <div class="header-card">
+            <h1>Modifier Stage</h1>
+            <p class="subtitle">Mettez à jour les informations du stage</p>
+        </div>
+        <div class="form-card">
+            <form th:action="@{'/web/stages/' + ${stage.code}}" method="post">
+                <div class="field">
+                    <label>Code</label>
+                    <div class="value" th:text="${stage.code}"></div>
+                </div>
+                <div class="field">
+                    <label>Étudiant</label>
+                    <div class="value" th:text="${stage.etudiant != null ? stage.etudiant.nom + ' ' + stage.etudiant.prenom + ' (' + stage.etudiant.niveau + ')' : 'N/A'}"></div>
+                </div>
+                <div class="field">
+                    <label>Adresse</label>
+                    <div class="value" th:text="${stage.addresse}"></div>
+                </div>
+                <div class="field">
+                    <label for="sujet">Sujet</label>
+                    <input type="text" id="sujet" name="sujet" th:value="${stage.sujet}" required>
+                </div>
+                <div class="field">
+                    <label for="enseignantCode">Enseignant</label>
+                    <select id="enseignantCode" name="enseignantCode">
+                        <option value="">-- Aucun --</option>
+                        <option th:each="ens : ${enseignants}"
+                                th:value="${ens.code}"
+                                th:text="${ens.nom + ' ' + ens.prenom + ' (' + ens.specialite + ')'}"
+                                th:selected="${stage.enseignantCode == ens.code}">
+                        </option>
+                    </select>
+                </div>
+                <div class="btn-row">
+                    <button type="submit" class="btn">Enregistrer</button>
+                    <a href="/web/stages" class="btn-cancel">Annuler</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
