@@ -1,13 +1,12 @@
 package org.ms.scolariteservice.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.ms.scolariteservice.model.Enseignant;
+import org.ms.scolariteservice.model.Etudiant;
 
 @Entity
 @Data
@@ -21,4 +20,16 @@ public class Scolarite {
     private String nom;
     private String prenom;
     private String niveau;
+
+    @Transient
+    private String addresse;
+
+    @Transient
+    private String email;
+
+    @Transient
+    private Etudiant etudiant;
+
+    @Transient
+    private Enseignant enseignant;
 }

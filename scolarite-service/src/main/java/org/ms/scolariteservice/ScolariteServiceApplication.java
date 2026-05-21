@@ -5,9 +5,11 @@ import org.ms.scolariteservice.repository.ScolariteRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
+@EnableFeignClients
 public class ScolariteServiceApplication {
 
     public static void main(String[] args) {
@@ -17,9 +19,9 @@ public class ScolariteServiceApplication {
     @Bean
     CommandLineRunner start(ScolariteRepository scolariteRepository) {
         return args -> {
-            scolariteRepository.save(new Scolarite(null, "Ali", "Ben Salah", "L3"));
-            scolariteRepository.save(new Scolarite(null, "Mariem", "Kacem", "M1"));
-            scolariteRepository.save(new Scolarite(null, "Sami", "Trabelsi", "L3"));
+            scolariteRepository.save(new Scolarite(null, "AZZA", "BOUAZIZI", "L3", null, null, null, null));
+            scolariteRepository.save(new Scolarite(null, "NOUR", "BOUAZIZI", "M1", null, null, null, null));
+            scolariteRepository.save(new Scolarite(null, "GAYTH", "BOUAZIZI", "L3", null, null, null, null));
 
             scolariteRepository.findAll().forEach(s -> {
                 System.out.println(s.toString());

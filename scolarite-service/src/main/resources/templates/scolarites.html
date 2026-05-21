@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Scolarité — Liste</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background: #f0f2f5;
+            color: #1e293b;
+            min-height: 100vh;
+        }
+        .topbar {
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+            padding: 16px 0;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+        }
+        .topbar-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 36px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .topbar-logo {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-weight: 700;
+            font-size: 14px;
+        }
+        .topbar-title {
+            color: #fff;
+            font-size: 16px;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+        }
+        .topbar-badge {
+            margin-left: auto;
+            background: rgba(255,255,255,0.1);
+            color: #c7d2fe;
+            font-size: 12px;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+        .page {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 32px 36px;
+        }
+        .header-card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 28px 32px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+            margin-bottom: 24px;
+            border-left: 4px solid #6366f1;
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+        }
+        .header-left h1 {
+            font-size: 20px;
+            font-weight: 700;
+            color: #0f172a;
+        }
+        .header-left .subtitle {
+            color: #64748b;
+            font-size: 14px;
+            margin-top: 4px;
+        }
+        .header-right {
+            text-align: right;
+        }
+        .header-right .badge {
+            font-size: 13px;
+            color: #6366f1;
+            background: #eef2ff;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-weight: 500;
+            display: inline-block;
+            margin-left: 8px;
+        }
+        .table-card {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+            overflow: hidden;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th {
+            background: #f8fafc;
+            color: #475569;
+            font-weight: 600;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            padding: 14px 20px;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        td {
+            padding: 16px 20px;
+            border-bottom: 1px solid #f1f5f9;
+            font-size: 14px;
+            color: #334155;
+        }
+        tbody tr:last-child td { border-bottom: none; }
+        tbody tr { transition: background 0.15s; }
+        tbody tr:hover { background: #f8fafc; }
+        .id-badge {
+            font-family: monospace;
+            background: #f1f5f9;
+            color: #475569;
+            padding: 2px 10px;
+            border-radius: 4px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+        .niveau-tag {
+            display: inline-block;
+            padding: 2px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        .niveau-l3 { background: #dbeafe; color: #1d4ed8; }
+        .niveau-m1 { background: #fce7f3; color: #db2777; }
+        .niveau-m2 { background: #ede9fe; color: #7c3aed; }
+        .btn {
+            display: inline-block;
+            padding: 6px 18px;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 500;
+            transition: all 0.2s;
+            box-shadow: 0 2px 6px rgba(99,102,241,0.25);
+        }
+        .btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(99,102,241,0.35);
+        }
+        .footer-text {
+            text-align: center;
+            margin-top: 24px;
+            font-size: 12px;
+            color: #94a3b8;
+        }
+    </style>
+</head>
+<body>
+    <div class="topbar">
+        <div class="topbar-inner">
+            <div class="topbar-logo">S</div>
+            <span class="topbar-title">ScolaritéService</span>
+            <span class="topbar-badge">Gestion de la scolarité</span>
+        </div>
+    </div>
+    <div class="page">
+        <div class="header-card">
+            <div class="header-left">
+                <h1>Liste des inscriptions</h1>
+                <p class="subtitle">Consultez et gérez les inscriptions universitaires</p>
+            </div>
+            <div class="header-right">
+                <span class="badge" th:if="${addresse != null}" th:text="${addresse}"></span>
+                <span class="badge" th:if="${email != null}" th:text="${email}"></span>
+            </div>
+        </div>
+        <div class="table-card">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nom</th>
+                        <th>Prénom</th>
+                        <th>Niveau</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="s : ${scolarites}">
+                        <td><span class="id-badge" th:text="${s.id}"></span></td>
+                        <td th:text="${s.nom}"></td>
+                        <td th:text="${s.prenom}"></td>
+                        <td>
+                            <span class="niveau-tag" th:classappend="'niveau-' + ${#strings.toLowerCase(s.niveau)}"
+                                  th:text="${s.niveau}"></span>
+                        </td>
+                        <td><a class="btn" th:href="@{'/web/scolarites/' + ${s.id}}">Modifier</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p class="footer-text">ScolaritéService — Application de gestion universitaire</p>
+    </div>
+</body>
+</html>
